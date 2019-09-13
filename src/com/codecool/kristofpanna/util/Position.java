@@ -33,9 +33,26 @@ public class Position {
         return Math.abs(this.x - otherPosition.x) + Math.abs(this.y - otherPosition.y);
     }
 
+    /**
+     * Set this to the neighbor in the given direction.
+     *
+     * If that would be over the border of the grid, then stay.
+     */
     public void move(Direction direction) {
-        // TODO
+        if (Math.abs(this.x + direction.getX()) < gridSize) {
+            this.x += direction.getX();
+        } else return;
+        if (Math.abs(this.y + direction.getY()) < gridSize) {
+            this.y += direction.getY();
+        }
     }
 
-
+    @Override
+    public String toString() {
+        return "Position{" +
+                "x=" + x +
+                ", y=" + y +
+                ", gridSize=" + gridSize +
+                '}';
+    }
 }
