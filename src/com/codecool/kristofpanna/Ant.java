@@ -9,7 +9,7 @@ abstract class Ant {
     /**
      * Current position of the ant on the grid.
      */
-    private Position position;
+    protected Position position;
 
 
     Ant(int gridSize){
@@ -21,7 +21,7 @@ abstract class Ant {
      * Set initial position on the grid.
      */
     protected void initPosition() {
-        // default: random place todo override in queen
+        // default: random place
         this.position = Position.getRandomPosition(gridSize);
     }
 
