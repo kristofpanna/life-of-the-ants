@@ -1,4 +1,4 @@
-package com.codecool.kristofpanna;
+package com.codecool.kristofpanna.ants;
 
 class Soldier extends Ant {
     public Soldier(int gridSize) {

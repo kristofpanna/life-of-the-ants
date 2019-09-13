@@ -1,4 +1,4 @@
-package com.codecool.kristofpanna;
+package com.codecool.kristofpanna.util;
 
 public class TestPosition {
     public static void main(String[] args) {

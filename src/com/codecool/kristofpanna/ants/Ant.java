@@ -1,4 +1,6 @@
-package com.codecool.kristofpanna;
+package com.codecool.kristofpanna.ants;
+
+import com.codecool.kristofpanna.util.Position;
 
 abstract class Ant {
     /**
@@ -41,7 +43,7 @@ abstract class Ant {
      * Returns the ant's distance from the queen.
      */
     protected int queenDist() {
-        Position queenPosition = new Position(0,0); // todo ...for dynamic queen? :)
+        Position queenPosition = new Position(0,0); // todo think about: ...for dynamic queen? :)
         return this.position.distanceFrom(queenPosition);
     }
 

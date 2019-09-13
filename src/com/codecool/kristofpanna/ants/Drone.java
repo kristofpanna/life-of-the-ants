@@ -1,7 +1,7 @@
-package com.codecool.kristofpanna;
+package com.codecool.kristofpanna.ants;
 
-class Worker extends Ant {
-    public Worker(int gridSize) {
+class Drone extends Ant {
+    public Drone(int gridSize) {
         super(gridSize);
     }
 

@@ -1,4 +1,6 @@
-package com.codecool.kristofpanna;
+package com.codecool.kristofpanna.ants;
+
+import com.codecool.kristofpanna.util.Position;
 
 class Queen extends Ant {
     public Queen(int gridSize) {

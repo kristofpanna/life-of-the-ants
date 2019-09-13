@@ -1,4 +1,4 @@
-package com.codecool.kristofpanna;
+package com.codecool.kristofpanna.util;
 
 /**
  * Directions on the 2D grid.

@@ -1,4 +1,4 @@
-package com.codecool.kristofpanna;
+package com.codecool.kristofpanna.util;
 
 public class Position {
     private int x;
