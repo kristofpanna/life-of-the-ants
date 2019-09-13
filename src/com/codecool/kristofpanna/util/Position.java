@@ -1,23 +1,29 @@
 package com.codecool.kristofpanna.util;
 
+import java.util.Random;
+
 public class Position {
     private int x;
     private int y;
+    private int gridSize;
 
-    public Position(int x, int y) {
+    public Position(int x, int y, int gridSize) {
         this.x = x;
         this.y = y;
+        this.gridSize = gridSize;
     }
 
     /**
      * Get random position on the grid.
-     * @param gridSize largest possible absolute value for any coordinate
+     *
+     * @param gridSize upper bound for the absolute value of any coordinate
      */
     public static Position getRandomPosition(int gridSize) {
-        // todo random
-        int x=0;
-        int y=0;
-        return new Position(x, y);
+        Random random = new Random();
+        int x = random.nextInt(gridSize);
+        int y = random.nextInt(gridSize);
+
+        return new Position(x, y, gridSize);
     }
 
     /**

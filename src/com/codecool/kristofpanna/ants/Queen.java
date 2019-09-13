@@ -9,7 +9,7 @@ class Queen extends Ant {
 
     @Override
     protected void initPosition() {
-        this.position = new Position(0,0);
+        this.position = new Position(0,0, this.gridSize);
     }
 
     @Override

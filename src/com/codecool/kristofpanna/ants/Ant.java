@@ -6,7 +6,7 @@ abstract class Ant {
     /**
      * Max absolute value of coordinates on the grid the ant lives on.
      */
-    private int gridSize;
+    protected int gridSize;
 
     /**
      * Current position of the ant on the grid.
@@ -43,7 +43,7 @@ abstract class Ant {
      * Returns the ant's distance from the queen.
      */
     protected int queenDist() {
-        Position queenPosition = new Position(0,0); // todo think about: ...for dynamic queen? :)
+        Position queenPosition = new Position(0,0, gridSize); // todo think about: ...for dynamic queen? :)
         return this.position.distanceFrom(queenPosition);
     }
 

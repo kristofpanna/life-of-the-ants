@@ -6,12 +6,12 @@ public class TestPosition {
     }
 
     private static void testDistanceFrom() {
-        Position position1 = new Position(0,0);
-        Position position2 = new Position(1,2);
+        Position position1 = new Position(0,0, 10);
+        Position position2 = new Position(1,2, 10);
         System.out.println(position1.distanceFrom(position2) + " should be 3.");
         System.out.println(position1.distanceFrom(position1) + " should be 0.");
         System.out.println(position2.distanceFrom(position1) + " should be 3.");
-        Position position3 = new Position(-1,2);
+        Position position3 = new Position(-1,2, 10);
         System.out.println(position2.distanceFrom(position3) + " should be 2.");
 
     }
