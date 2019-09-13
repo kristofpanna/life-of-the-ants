@@ -13,24 +13,23 @@ public class Position {
      * Get random position on the grid.
      * @param gridSize largest possible absolute value for any coordinate
      */
-    public Position getRandomPosition(int gridSize) {
+    public static Position getRandomPosition(int gridSize) {
         // todo random
-        x=0;
-        y=0;
+        int x=0;
+        int y=0;
         return new Position(x, y);
     }
 
     /**
-     * Distance of the two positions.
+     * Distance of this position from the given position.
      */
-    public static int distance(Position pos1, Position pos2) {
+    public int distanceFrom(Position otherPosition) {
         // TODO
         return 0;
     }
 
-    public Position move(Position from, Direction direction) {
+    public void move(Direction direction) {
         // TODO
-        return from;
     }
 
 
