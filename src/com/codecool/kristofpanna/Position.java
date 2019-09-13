@@ -21,11 +21,10 @@ public class Position {
     }
 
     /**
-     * Distance of this position from the given position.
+     * Distance (Manhattan) of this position from the given position.
      */
     public int distanceFrom(Position otherPosition) {
-        // TODO
-        return 0;
+        return Math.abs(this.x - otherPosition.x) + Math.abs(this.y - otherPosition.y);
     }
 
     public void move(Direction direction) {
