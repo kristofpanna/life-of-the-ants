@@ -1,5 +1,11 @@
 package com.codecool.kristofpanna.ants;
 
+import com.codecool.kristofpanna.util.Direction;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 class Worker extends Ant {
     public Worker(int gridSize) {
         super(gridSize);
@@ -7,6 +13,7 @@ class Worker extends Ant {
 
     @Override
     protected void moveStep() {
-        //todo
+        // make one step randomly in one of the four directions
+        position.move(Direction.getRandomDirection());
     }
 }

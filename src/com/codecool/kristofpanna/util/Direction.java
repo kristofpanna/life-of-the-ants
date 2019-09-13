@@ -1,5 +1,10 @@
 package com.codecool.kristofpanna.util;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 /**
  * Directions on the 2D grid.
  */
@@ -23,5 +28,15 @@ public enum Direction {
 
     public int getY() {
         return y;
+    }
+
+    private static final List<Direction> VALUES = List.of(Direction.values());
+
+    /**
+     * Get a random direction.
+     */
+    public static Direction getRandomDirection() {
+        Random random = new Random();
+        return VALUES.get(random.nextInt());
     }
 }
