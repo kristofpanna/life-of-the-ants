@@ -2,8 +2,22 @@ package com.codecool.kristofpanna.util;
 
 public class TestPosition {
     public static void main(String[] args) {
+        testRandomPosition();
         testDistanceFrom();
         testMove();
+    }
+
+    private static void testRandomPosition() {
+        Position position = Position.getRandomPosition(10);
+        System.out.println(position);
+        position = Position.getRandomPosition(10);
+        System.out.println(position);
+        position = Position.getRandomPosition(10);
+        System.out.println(position);
+        position = Position.getRandomPosition(10);
+        System.out.println(position);
+        position = Position.getRandomPosition(10);
+        System.out.println(position);
     }
 
     private static void testDistanceFrom() {
@@ -27,9 +41,9 @@ public class TestPosition {
         position1.move(Direction.WEST);
         System.out.println(position1 + " should be at (1,2)");
 
-        Position position2 = new Position(1,-9, 10);
+        Position position2 = new Position(1,-10, 10);
         position2.move(Direction.SOUTH);
-        System.out.println(position2 + " should be at (1,-9)");
+        System.out.println(position2 + " should be at (1,-10)");
 
 
 

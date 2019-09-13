@@ -16,12 +16,12 @@ public class Position {
     /**
      * Get random position on the grid.
      *
-     * @param gridSize upper bound for the absolute value of any coordinate
+     * @param gridSize max absolute value of any coordinate
      */
     public static Position getRandomPosition(int gridSize) {
         Random random = new Random();
-        int x = random.nextInt(gridSize);
-        int y = random.nextInt(gridSize);
+        int x = random.nextInt(gridSize * 2 + 1) - gridSize;
+        int y = random.nextInt(gridSize * 2 + 1) - gridSize;
 
         return new Position(x, y, gridSize);
     }
@@ -35,14 +35,14 @@ public class Position {
 
     /**
      * Set this to the neighbor in the given direction.
-     *
+     * <p>
      * If that would be over the border of the grid, then stay.
      */
     public void move(Direction direction) {
-        if (Math.abs(this.x + direction.getX()) < gridSize) {
+        if (Math.abs(this.x + direction.getX()) <= gridSize) {
             this.x += direction.getX();
         } else return;
-        if (Math.abs(this.y + direction.getY()) < gridSize) {
+        if (Math.abs(this.y + direction.getY()) <= gridSize) {
             this.y += direction.getY();
         }
     }
