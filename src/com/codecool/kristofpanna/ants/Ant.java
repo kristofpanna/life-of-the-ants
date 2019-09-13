@@ -6,7 +6,7 @@ abstract class Ant {
     /**
      * Max absolute value of coordinates on the grid the ant lives on.
      */
-    protected int gridSize;
+    protected int gridSize; // todo refactor?: access whole Colony?
 
     /**
      * Current position of the ant on the grid.
