@@ -43,7 +43,7 @@ abstract class Ant {
      * Returns the ant's distance from the queen.
      */
     protected int queenDist() {
-        Position queenPosition = new Position(0,0, gridSize); // todo think about: ...for dynamic queen? :)
+        Position queenPosition = new Position(0,0, gridSize); // todo get actual position
         return this.position.distanceFrom(queenPosition);
     }
 
