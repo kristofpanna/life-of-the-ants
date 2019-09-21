@@ -1,7 +1,5 @@
 package com.codecool.kristofpanna;
 
-import com.codecool.kristofpanna.util.Display;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -38,7 +36,6 @@ public class Main {
     }
 
     private static void showColony(Colony colony) {
-        Display.clearConsole();
         System.out.println(colony.toString());
     }
 
