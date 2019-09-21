@@ -1,12 +1,14 @@
 package com.codecool.kristofpanna.ants;
 
-class Soldier extends Ant {
-    public Soldier(int gridSize) {
-        super(gridSize);
+import com.codecool.kristofpanna.Colony;
+
+public class Soldier extends Ant {
+    public Soldier(Colony colony) {
+        super(colony);
     }
 
     @Override
-    protected void moveStep() {
+    public void moveStep() {
         //todo
     }
 }

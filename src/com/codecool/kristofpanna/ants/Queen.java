@@ -1,19 +1,20 @@
 package com.codecool.kristofpanna.ants;
 
+import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Position;
 
-class Queen extends Ant {
-    public Queen(int gridSize) {
-        super(gridSize);
+public class Queen extends Ant {
+    public Queen(Colony colony) {
+        super(colony);
     }
 
     @Override
     protected void initPosition() {
-        this.position = new Position(0,0, this.gridSize);
+        this.position = new Position(0,0, colony.getGridSize());
     }
 
     @Override
-    protected void moveStep() {
+    public void moveStep() {
         // does not move
     }
 }

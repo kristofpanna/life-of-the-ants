@@ -1,12 +1,13 @@
 package com.codecool.kristofpanna.ants;
 
+import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Position;
 
-abstract class Ant {
+public abstract class Ant {
     /**
-     * Max absolute value of coordinates on the grid the ant lives on.
+     * The (only) colony that the ant is part of.
      */
-    protected int gridSize; // todo refactor?: access whole Colony?
+    protected Colony colony;
 
     /**
      * Current position of the ant on the grid.
@@ -14,9 +15,9 @@ abstract class Ant {
     protected Position position;
 
 
-    Ant(int gridSize){
-        this.gridSize = gridSize;
+    public Ant(Colony colony){  // DOES NOT WORK TODO refactor param: only accessors (QueenGetter,...?)
         initPosition();
+        System.out.println(this.getClass() + " is born.");
     }
 
     /**
@@ -24,7 +25,7 @@ abstract class Ant {
      */
     protected void initPosition() {
         // default: random place
-        this.position = Position.getRandomPosition(gridSize);
+        this.position = Position.getRandomPosition(colony.getGridSize());
     }
 
     /**
@@ -37,13 +38,13 @@ abstract class Ant {
     /**
      * Update the ant's position (one step).
      */
-    protected abstract void moveStep();
+    public abstract void moveStep();
 
     /**
      * Returns the ant's distance from the queen.
      */
     protected int queenDist() {
-        Position queenPosition = new Position(0,0, gridSize); // todo get actual position
+        Position queenPosition = colony.getQueen().getPosition();
         return this.position.distanceFrom(queenPosition);
     }
 

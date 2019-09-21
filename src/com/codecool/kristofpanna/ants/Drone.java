@@ -1,12 +1,14 @@
 package com.codecool.kristofpanna.ants;
 
-class Drone extends Ant {
-    public Drone(int gridSize) {
-        super(gridSize);
+import com.codecool.kristofpanna.Colony;
+
+public class Drone extends Ant {
+    public Drone(Colony colony) {
+        super(colony);
     }
 
     @Override
-    protected void moveStep() {
+    public void moveStep() {
         //todo
     }
 }

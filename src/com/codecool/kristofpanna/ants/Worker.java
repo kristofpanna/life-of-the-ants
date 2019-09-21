@@ -1,15 +1,16 @@
 package com.codecool.kristofpanna.ants;
 
+import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Direction;
 
 
-class Worker extends Ant {
-    public Worker(int gridSize) {
-        super(gridSize);
+public class Worker extends Ant {
+    public Worker(Colony colony) {
+        super(colony);
     }
 
     @Override
-    protected void moveStep() {
+    public void moveStep() {
         // make one step randomly in one of the four directions
         position.move(Direction.getRandomDirection());
     }
