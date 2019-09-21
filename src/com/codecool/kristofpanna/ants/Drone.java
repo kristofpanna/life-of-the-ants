@@ -1,6 +1,7 @@
 package com.codecool.kristofpanna.ants;
 
 import com.codecool.kristofpanna.Colony;
+import com.codecool.kristofpanna.util.Direction;
 import com.codecool.kristofpanna.util.Position;
 
 public class Drone extends Ant {
@@ -48,6 +49,9 @@ public class Drone extends Ant {
 
     public void kickOff(Position from) {     // todo kickable interface? pass this function as callback?
         System.out.println("I got kicked off!");
+        //  they are kicked off to a random point with the distance of 100 steps
+        // todo uniformly random from points at a distance 100
+        position.move(Direction.getRandomDirection());
         // fly 100 steps away from the queen
         for (int i = 0; i < KICKING_DISTANCE; i++) {
             position.moveAway(from);

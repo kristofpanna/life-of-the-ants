@@ -30,6 +30,8 @@ public class Position {
         return new Position(x, y, gridSize);
     }
 
+    // todo  public static Position getRandomPositionAtDistance(int distance) {}
+
     /**
      * Distance (Manhattan) of this position from the given position.
      */

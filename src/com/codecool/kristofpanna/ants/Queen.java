@@ -30,12 +30,12 @@ public class Queen extends Ant {
     }
 
     /**
-     * Number of seconds until the queen will be in the mood again (or negative).
+     * Number of steps until the queen will be in the mood again (or <= 0 if in the mood).
      */
     private int matingMoodDelayTimer = 0; // she starts horny
 
     /**
-     * Number of seconds while the queen is still mating (or negative).
+     * Number of steps while the queen is still mating (or <= 0 if not mating).
      */
     private int matingTimer = 0;
 
