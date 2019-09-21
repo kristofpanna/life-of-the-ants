@@ -1,9 +1,6 @@
 package com.codecool.kristofpanna;
 
-import com.codecool.kristofpanna.ants.Ant;
-import com.codecool.kristofpanna.ants.Drone;
-import com.codecool.kristofpanna.ants.Queen;
-import com.codecool.kristofpanna.ants.Soldier;
+import com.codecool.kristofpanna.ants.*;
 import com.codecool.kristofpanna.util.Display;
 import com.codecool.kristofpanna.util.Position;
 
@@ -56,7 +53,7 @@ public class Colony {
 
     private void createWorkers(int num) {
         for (int i = 0; i < num; i++) {
-            ants.add(new Soldier(this));
+            ants.add(new Worker(this));
         }
     }
 
