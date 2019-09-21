@@ -86,7 +86,7 @@ public class Colony {
         // add ants
         for (Ant ant : ants) {
             Position antPos = ant.getPosition();
-            grid[antPos.getY() + gridSize][antPos.getX() + gridSize] = ant.getSymbol();
+            grid[gridSize - antPos.getY()][antPos.getX() + gridSize] = ant.getSymbol();
         }
 
         return Display.arrayToString(grid);

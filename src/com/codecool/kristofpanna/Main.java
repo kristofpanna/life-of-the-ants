@@ -2,12 +2,12 @@ package com.codecool.kristofpanna;
 
 public class Main {
 
-    // run from terminal
+    // run from terminal: java com.codecool.kristofpanna.Main -cp ./*
     public static void main(String[] args) {
         Colony colony = initColony();
         showColony(colony);
 
-        play(5, colony);
+        play(10, colony);
     }
 
     private static Colony initColony() {
