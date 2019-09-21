@@ -8,6 +8,63 @@ public class Queen extends Ant {
         super(colony);
     }
 
+    /**
+     * State of the queen's mating mood.
+     */
+    private MatingMood matingMood = MatingMood.YES;
+
+    /**
+     * Possible mating mood states.
+     */
+    public enum MatingMood {
+        YES,    // you are lucky
+        NO,     // go away
+        MATING  // currently mating, so go away // todo prevent orgies
+    }
+
+    public MatingMood getMatingMood() {
+        return matingMood;
+    }
+
+    /**
+     * Number of seconds until the queen will be in the mood again (or negative).
+     */
+    private int matingMoodDelayTimer = 0; // she starts horny
+
+    /**
+     * Number of seconds while the queen is still mating (or negative).
+     */
+    private int matingTimer = 0;
+
+
+    public MatingMood tryToMate() {     // todo polite version -> through Mateable interface :)
+        if (matingMood == MatingMood.YES) {
+            startMating();
+        }
+        return matingMood;
+    }
+
+    /**
+     * Mating state changers
+     */
+
+    private void startMating() {
+        //matingMood = MatingMood.MATING;
+        matingTimer = 10;
+    }
+
+    private void finishMating() {
+        matingMood = MatingMood.NO;
+        matingMoodDelayTimer = 20;
+        //matingMoodDelayTimer = Randomize.getRandInt(100, 201);
+        // todo callback to drone?
+    }
+
+    public void getInTheMoodForMating() {
+        matingMood = MatingMood.YES;
+    }
+
+
     @Override
     protected void initPosition() {
         this.position = new Position(0,0, colony.getGridSize());
@@ -15,11 +72,28 @@ public class Queen extends Ant {
 
     @Override
     public void moveStep() {
-        // does not move
+        // does not move, but timers tick
+        matingMoodDelayTimer -= 1;
+        if (matingMoodDelayTimer == 0) {
+            getInTheMoodForMating();
+        }
+
+        matingTimer -= 1;
+        if (matingTimer == 0) {
+            finishMating();
+        }
     }
 
     @Override
     public String getSymbol() {
-        return "Ő";
+        switch (getMatingMood()) {
+            case YES:
+                return "Ő";
+            case NO:
+                return "ő";
+            case MATING:
+                return "ß";
+        }
+        return null;
     }
 }

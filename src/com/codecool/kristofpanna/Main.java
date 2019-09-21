@@ -7,11 +7,11 @@ public class Main {
         Colony colony = initColony();
         showColony(colony);
 
-        play(10, colony);
+        play(100, colony);
     }
 
     private static Colony initColony() {
-        int gridSize = 5;
+        int gridSize = 10;
         int workerNum = 2;
         int soldierNum = 3;
         int droneNum = 4;
@@ -29,6 +29,7 @@ public class Main {
     private static void stepTime(Colony colony) {
         colony.moveAnts();
         showColony(colony);
+        System.out.println("<3 " + colony.getQueen().getMatingMood());
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

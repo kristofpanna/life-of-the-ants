@@ -8,4 +8,8 @@ public class Randomize {
     public static int getRandInt(int to) {
         return random.nextInt(to);
     }
+    public static int getRandInt(int from, int to) {
+        return random.nextInt(to - from) + from;
+    }
+
 }
