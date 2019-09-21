@@ -8,6 +8,9 @@ public class Queen extends Ant {
         super(colony);
     }
 
+    private final int MATING_MOOD_DELAY = 20;
+    final int MATING_TIME = 10;
+
     /**
      * State of the queen's mating mood.
      */
@@ -50,12 +53,12 @@ public class Queen extends Ant {
 
     private void startMating() {
         //matingMood = MatingMood.MATING;
-        matingTimer = 10;
+        this.matingTimer = MATING_TIME;
     }
 
     private void finishMating() {
         matingMood = MatingMood.NO;
-        matingMoodDelayTimer = 20;
+        this.matingMoodDelayTimer = MATING_MOOD_DELAY;
         //matingMoodDelayTimer = Randomize.getRandInt(100, 201);
         // todo callback to drone?
     }
