@@ -43,12 +43,17 @@ public class Position {
      * If that would be over the border of the grid, then stay.
      */
     public void move(Direction direction) {
-        if (Math.abs(this.x) < gridSize) {
-            this.x += direction.getX();
-        } else return;
-        if (Math.abs(this.y) < gridSize) {
-            this.y += direction.getY();
+        Position newPos = new Position(x + direction.getX(), y + direction.getY(), gridSize);
+        if (newPos.isOnGrid()) {
+            x = newPos.getX();
+            y = newPos.getY();
         }
+    }
+
+    public boolean isOnGrid() {
+        int absX = Math.abs(x);
+        int absY = Math.abs(y);
+        return (absX <= gridSize && absY <= gridSize);
     }
 
     public void moveTowards(Position target) {
