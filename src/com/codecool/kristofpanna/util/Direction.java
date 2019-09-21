@@ -27,7 +27,7 @@ public enum Direction {
      */
     public static Direction getRandomDirection() {
         Random random = new Random();
-        return VALUES.get(random.nextInt());
+        return VALUES.get(random.nextInt(4));
     }
 
     public static Direction getDirectionByValue(int x, int y) {
