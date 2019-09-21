@@ -2,6 +2,7 @@ package com.codecool.kristofpanna;
 
 public class Main {
 
+    // run from terminal
     public static void main(String[] args) {
         Colony colony = initColony();
         showColony(colony);
