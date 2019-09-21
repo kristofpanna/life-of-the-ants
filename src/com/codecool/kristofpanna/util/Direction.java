@@ -30,6 +30,15 @@ public enum Direction {
         return VALUES.get(random.nextInt());
     }
 
+    public static Direction getDirectionByValue(int x, int y) {
+        for (Direction direction : values()) {
+            if (direction.x == x && direction.y == y) {
+                return direction;
+            }
+        }
+        return null; // todo throw exception instead
+    }
+
     public int getX() {
         return this.x;
     }

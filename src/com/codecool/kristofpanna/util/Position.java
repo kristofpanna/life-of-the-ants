@@ -62,21 +62,12 @@ public class Position {
     }
 
     private Direction directionTo(Position target) {
-        int directionVectorX = target.x - this.x;
-        if (directionVectorX < 0) {
-            return Direction.WEST;
+        int directionVectorX = (int) Math.signum(target.x - this.x);
+        int directionVectorY = (int) Math.signum(target.y - this.y);
+        if (directionVectorX != 0 && directionVectorY != 0) {
+            directionVectorY = 0;
         }
-        if (directionVectorX > 0) {
-            return Direction.EAST;
-        }
-        int directionVectorY = target.y - this.y;
-        if (directionVectorY < 0) {
-            return Direction.SOUTH;
-        }
-        if (directionVectorY > 0) {
-            return Direction.NORTH;
-        }
-        return null;
+       return Direction.getDirectionByValue(directionVectorX, directionVectorY);
     }
 
     @Override
