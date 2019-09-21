@@ -34,7 +34,7 @@ public enum Direction {
                 return direction;
             }
         }
-        return null; // todo throw exception instead?
+        return null;
     }
 
     public int getX() {
@@ -47,5 +47,9 @@ public enum Direction {
 
     public Direction next() {
         return VALUES.get((this.ordinal() + 1) % VALUES.size());
+    }
+
+    public Direction opposite() {
+        return getDirectionByValue(-x, -y);
     }
 }

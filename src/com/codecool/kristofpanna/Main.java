@@ -11,7 +11,7 @@ public class Main {
     }
 
     private static Colony initColony() {
-        int gridSize = 10;
+        int gridSize = 15;
         int workerNum = 2;
         int soldierNum = 3;
         int droneNum = 4;

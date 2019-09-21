@@ -57,19 +57,36 @@ public class Position {
     }
 
     public void moveTowards(Position target) {
-        Direction direction = directionTo(target);
+        Direction direction = directionTowards(target);
         if (direction != null) {
             move(direction);
         }
     }
 
-    private Direction directionTo(Position target) {
+    private Direction directionTowards(Position target) {
         int directionVectorX = (int) Math.signum(target.x - this.x);
         int directionVectorY = (int) Math.signum(target.y - this.y);
         if (directionVectorX != 0 && directionVectorY != 0) {
-            directionVectorY = 0;
+            if (Randomize.getRandInt(2) == 1) {
+                directionVectorY = 0;
+            }
+            else {
+                directionVectorX = 0;
+            }
+
         }
        return Direction.getDirectionByValue(directionVectorX, directionVectorY);
+    }
+
+    public void moveAway(Position target) {
+        Direction direction = directionAway(target);
+        if (direction != null) {
+            move(direction);
+        }
+    }
+
+    private Direction directionAway(Position target) {
+        return directionTowards(target).opposite();
     }
 
     public int getX() {
