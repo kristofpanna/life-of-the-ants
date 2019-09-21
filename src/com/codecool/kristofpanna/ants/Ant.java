@@ -15,7 +15,7 @@ public abstract class Ant {
     protected Position position;
 
 
-    public Ant(Colony colony) {  // DOES NOT WORK TODO refactor param: only accessors (QueenGetter,...?)
+    public Ant(Colony colony) {  // todo refactor param: only accessors (QueenGetter,...?)
         this.colony = colony;
         initPosition();
         System.out.println(this.getClass().toString() + " was born.");
