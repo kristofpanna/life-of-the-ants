@@ -14,4 +14,9 @@ public class Worker extends Ant {
         // make one step randomly in one of the four directions
         position.move(Direction.getRandomDirection());
     }
+
+    @Override
+    public String getSymbol() {
+        return "o";
+    }
 }

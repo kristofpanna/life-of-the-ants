@@ -11,4 +11,9 @@ public class Drone extends Ant {
     public void moveStep() {
         //todo
     }
+
+    @Override
+    public String getSymbol() {
+        return "@";
+    }
 }

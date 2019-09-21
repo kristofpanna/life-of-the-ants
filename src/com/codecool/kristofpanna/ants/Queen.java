@@ -17,4 +17,9 @@ public class Queen extends Ant {
     public void moveStep() {
         // does not move
     }
+
+    @Override
+    public String getSymbol() {
+        return "Ő";
+    }
 }

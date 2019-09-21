@@ -70,6 +70,14 @@ public class Position {
        return Direction.getDirectionByValue(directionVectorX, directionVectorY);
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     @Override
     public String toString() {
         return "Position{" +
