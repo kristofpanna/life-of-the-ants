@@ -1,7 +1,5 @@
 package com.codecool.kristofpanna.util;
 
-import java.util.Random;
-
 public class Position {
     /**
      * Coordinates.
@@ -26,9 +24,8 @@ public class Position {
      * @param gridSize max absolute value of any coordinate
      */
     public static Position getRandomPosition(int gridSize) {
-        Random random = new Random();
-        int x = random.nextInt(gridSize * 2 + 1) - gridSize;
-        int y = random.nextInt(gridSize * 2 + 1) - gridSize;
+        int x = Randomize.getRandInt((gridSize * 2 + 1) - gridSize);
+        int y = Randomize.getRandInt(gridSize * 2 + 1) - gridSize;
 
         return new Position(x, y, gridSize);
     }

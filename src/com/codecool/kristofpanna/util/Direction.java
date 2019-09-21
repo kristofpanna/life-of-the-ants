@@ -1,7 +1,6 @@
 package com.codecool.kristofpanna.util;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Directions on the 2D grid.
@@ -26,8 +25,7 @@ public enum Direction {
      * Get a random direction.
      */
     public static Direction getRandomDirection() {
-        Random random = new Random();
-        return VALUES.get(random.nextInt(4));
+        return VALUES.get(Randomize.getRandInt(4));
     }
 
     public static Direction getDirectionByValue(int x, int y) {
