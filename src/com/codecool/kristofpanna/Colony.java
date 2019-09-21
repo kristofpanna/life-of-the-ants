@@ -27,7 +27,10 @@ public class Colony {
 
     public Colony(int gridSize, int workerNum, int soldierNum, int droneNum) {
         this(gridSize);
-        // todo factory?
+        // todo init -> factory?...
+    }
+
+    public void init(int workerNum, int soldierNum, int droneNum) { // todo: init in constructor -> make this private
         createWorkers(workerNum);
         createSoldiers(soldierNum);
         createDrones(droneNum);
@@ -86,7 +89,7 @@ public class Colony {
         // add ants
         for (Ant ant : ants) {
             Position antPos = ant.getPosition();
-            grid[antPos.getY()][antPos.getX()] = ant.getSymbol();
+            grid[antPos.getY() + gridSize][antPos.getX() + gridSize] = ant.getSymbol();
         }
 
         return Display.arrayToString(grid);

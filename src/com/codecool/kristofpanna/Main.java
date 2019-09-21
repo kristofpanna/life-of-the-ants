@@ -13,6 +13,7 @@ public class Main {
         int soldierNum = 3;
         int droneNum = 4;
         Colony colony = new Colony(gridSize, workerNum, soldierNum, droneNum);
+        colony.init(workerNum, soldierNum, droneNum);   // todo: init in constructor
         System.out.println(colony.toString());
         return colony;
     }
