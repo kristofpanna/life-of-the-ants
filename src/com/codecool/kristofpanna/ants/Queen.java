@@ -39,6 +39,8 @@ public class Queen extends Ant {
      */
     private int matingTimer = 0;
 
+    private Drone matingPartner;
+
 
     public MatingMood tryToMate() {     // todo polite version -> through Mateable interface :)
         if (matingMood == MatingMood.YES) {

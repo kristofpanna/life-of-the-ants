@@ -4,7 +4,7 @@ import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Direction;
 import com.codecool.kristofpanna.util.Position;
 
-public class Drone extends Ant {
+public class Drone extends Ant implements MatingPartner {
     final int KICKING_DISTANCE = 10;
 
     private int matingTimer = 0;
