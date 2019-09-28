@@ -1,7 +1,7 @@
 package com.codecool.kristofpanna;
 
 import com.codecool.kristofpanna.ants.*;
-import com.codecool.kristofpanna.util.Display;
+import com.codecool.kristofpanna.util.DisplayUtil;
 import com.codecool.kristofpanna.util.Position;
 
 import java.util.ArrayList;
@@ -22,26 +22,22 @@ public class Colony {
 
     private List<Ant> ants = new ArrayList<>();
 
-    private Colony(int gridSize) {
-        this.gridSize = gridSize;
-    }
-
     public Colony(int gridSize, int workerNum, int soldierNum, int droneNum) {
-        this(gridSize);
-        // todo init here -> how?
-    }
-
-    public void init(int workerNum, int soldierNum, int droneNum) { // todo: init in constructor -> make this private
-        createQueen();
-        createWorkers(workerNum);
-        createSoldiers(soldierNum);
-        createDrones(droneNum);
+        this.gridSize = gridSize;
+        init(workerNum, soldierNum, droneNum);
     }
 
     public void moveAnts() {
         for (Ant ant : ants) {
             ant.moveStep();
         }
+    }
+
+    private void init(int workerNum, int soldierNum, int droneNum) {
+        createQueen();
+        createWorkers(workerNum);
+        createSoldiers(soldierNum);
+        createDrones(droneNum);
     }
 
     private void createQueen() {
@@ -88,7 +84,7 @@ public class Colony {
             grid[gridSize - antPos.getY()][antPos.getX() + gridSize] = ant.getSymbol();
         }
 
-        return Display.arrayToString(grid);
+        return DisplayUtil.arrayToString(grid);
     }
 
 }
