@@ -29,7 +29,6 @@ public class Main {
     private static void stepTime(Colony colony) {
         colony.moveAnts();
         showColony(colony);
-        System.out.println("<3 " + colony.getQueen().getMatingMood());
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

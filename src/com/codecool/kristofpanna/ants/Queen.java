@@ -3,87 +3,79 @@ package com.codecool.kristofpanna.ants;
 import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Position;
 
+import java.util.Optional;
+
 public class Queen extends Ant {
-    public Queen(Colony colony) {
-        super(colony);
-    }
-
+    private final int MATING_TIME = 10;
     private final int MATING_MOOD_DELAY = 20;
-    final int MATING_TIME = 10;
-
     /**
-     * State of the queen's mating mood.
+     * The MatingPartner with whom the Queen is currently mating (or empty if not mating).
+     * (Mating lock, to prevent orgies.)
      */
-    private MatingMood matingMood = MatingMood.YES;
-
-    /**
-     * Possible mating mood states.
-     */
-    public enum MatingMood {
-        YES,    // you are lucky
-        NO,     // go away
-        MATING  // currently mating, so go away // todo prevent orgies
-    }
-
-    public MatingMood getMatingMood() {
-        return matingMood;
-    }
-
+    private Optional<MatingPartner> currentMatingPartner = Optional.empty();
     /**
      * Number of steps until the queen will be in the mood again (or <= 0 if in the mood).
      */
     private int matingMoodDelayTimer = 0; // she starts horny
-
     /**
      * Number of steps while the queen is still mating (or <= 0 if not mating).
      */
     private int matingTimer = 0;
 
-    private Drone matingPartner;
+    public Queen(Colony colony) {
+        super(colony);
+    }
 
-
-    public MatingMood tryToMate() {     // todo polite version -> through Mateable interface :)
-        if (matingMood == MatingMood.YES) {
-            startMating();
-        }
-        return matingMood;
+    private boolean isInTheMoodForMating() {
+        return matingMoodDelayTimer <= 0;
     }
 
     /**
-     * Mating state changers
+     * This Drones call this function to contact the queen for mating.
+     *
+     * @param potentialMatingPartner the caller Drone himself (as a MatingPartner)
      */
+    public void tryToMate(MatingPartner potentialMatingPartner) { // todo private
+        if (!isInTheMoodForMating()) {
+            potentialMatingPartner.kickOff();
+            return;
+        }
 
-    private void startMating() {
-        //matingMood = MatingMood.MATING;
+        if (currentMatingPartner.isEmpty()) {
+            potentialMatingPartner.startMating();
+            startMating(potentialMatingPartner);
+            return;
+        }
+        if (currentMatingPartner.equals(Optional.of(potentialMatingPartner))) {
+            potentialMatingPartner.continueMating();
+            return;
+        }
+        // if mating with someone else
+        potentialMatingPartner.kickOff();
+    }
+
+    private void startMating(MatingPartner matingPartner) {
         this.matingTimer = MATING_TIME;
+        currentMatingPartner = Optional.of(matingPartner);
     }
 
     private void finishMating() {
-        matingMood = MatingMood.NO;
-        this.matingMoodDelayTimer = MATING_MOOD_DELAY;
+        matingMoodDelayTimer = MATING_MOOD_DELAY;
         //matingMoodDelayTimer = Randomize.getRandInt(100, 201);
-        // todo callback to drone?
+        currentMatingPartner = Optional.empty();
     }
-
-    public void getInTheMoodForMating() {
-        matingMood = MatingMood.YES;
-    }
-
 
     @Override
     protected void initPosition() {
-        this.position = new Position(0,0, colony.getGridSize());
+        this.position = new Position(0, 0, colony.getGridSize());
     }
 
     @Override
     public void moveStep() {
         // does not move, but timers tick
         matingMoodDelayTimer -= 1;
-        if (matingMoodDelayTimer == 0) {
-            getInTheMoodForMating();
-        }
-
         matingTimer -= 1;
+
         if (matingTimer == 0) {
             finishMating();
         }
@@ -91,14 +83,6 @@ public class Queen extends Ant {
 
     @Override
     public String getSymbol() {
-        switch (getMatingMood()) {
-            case YES:
-                return "Ő";
-            case NO:
-                return "ő";
-            case MATING:
-                return "ß";
-        }
-        return null;
+        return isInTheMoodForMating() ? "Ő" : "ő";
     }
 }

@@ -24,7 +24,7 @@ public class Colony {
 
     public Colony(int gridSize, int workerNum, int soldierNum, int droneNum) {
         this(gridSize);
-        // todo init -> factory?...
+        // todo init -> ?
     }
 
     public void init(int workerNum, int soldierNum, int droneNum) { // todo: init in constructor -> make this private

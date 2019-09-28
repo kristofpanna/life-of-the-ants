@@ -5,61 +5,65 @@ import com.codecool.kristofpanna.util.Direction;
 import com.codecool.kristofpanna.util.Position;
 
 public class Drone extends Ant implements MatingPartner {
-    final int KICKING_DISTANCE = 10;
-
-    private int matingTimer = 0;
+    private final int KICKING_DISTANCE = 10;
 
     public Drone(Colony colony) {
         super(colony);
     }
 
-    private boolean isMating() {
-        return matingTimer > 0;
-    }
+    /**
+     * Ant implementation
+     */
 
     @Override
     public void moveStep() {
-        // try to make one step towards the Queen
+        // if far from queen: try to make one step towards the Queen
         // When they get 3 steps close, they have a chance that the Queen is in the mood of mating.
         // In this happy case they say “HALLELUJAH”, stay there for 10 timesteps, and after that they are kicked off to a random point with the distance of 100 steps.
         // If they do not have luck, they say “D’OH”, and are kicked 100 steps away instantly.
-        Queen queen = colony.getQueen();
 
-        if (isMating()) {
-            // stay there
-            matingTimer--;
-            if (matingTimer == 0) {
-                kickOff(queen.getPosition());
-            }
-            return;
+        if (queenDist() > 3) {
+            Position queenPosition = colony.getQueen().getPosition(); // todo get only position
+            position.moveTowards(queenPosition);
+        } else {
+            colony.getQueen().tryToMate(this); // todo only through functional interface
         }
 
-        position.moveTowards(queen.getPosition());
-
-        if (queenDist() <= 3) {
-            if (queen.tryToMate() == Queen.MatingMood.YES) {
-                System.out.println("HALLELUJAH");
-                matingTimer = queen.MATING_TIME;
-            } else {
-                System.out.println("D’OH");
-                kickOff(queen.getPosition());
-            }
-        }
-    }
-
-    public void kickOff(Position from) {     // todo kickable interface? pass this function as callback?
-        System.out.println("I got kicked off!");
-        //  they are kicked off to a random point with the distance of 100 steps
-        // todo uniformly random from points at a distance 100
-        position.move(Direction.getRandomDirection());
-        // fly 100 steps away from the queen
-        for (int i = 0; i < KICKING_DISTANCE; i++) {
-            position.moveAway(from);
-        }
     }
 
     @Override
     public String getSymbol() {
         return "@";
     }
+
+    /**
+     * MatingPartner implementation
+     */
+
+    @Override
+    public void kickOff() {
+        System.out.println("D’OH");
+
+        // todo extract to Position
+        Position from = new Position(position);
+        //  they are kicked off to a random point with the distance of 100 steps
+        // todo uniformly random from points at a distance 100
+        position.move(Direction.getRandomDirection());
+        // fly 100 steps away
+        for (int i = 0; i < KICKING_DISTANCE; i++) {
+            position.moveAway(from);
+        }
+    }
+
+    @Override
+    public void startMating() {
+        System.out.println("HALLELUJAH");
+    }
+
+    @Override
+    public void continueMating() {
+        System.out.println("<3");
+    }
+
+
 }

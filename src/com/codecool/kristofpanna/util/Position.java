@@ -18,6 +18,12 @@ public class Position {
         this.gridSize = gridSize;
     }
 
+    public Position(Position position) {
+        this.x = position.x;
+        this.y = position.y;
+        this.gridSize = position.gridSize;
+    }
+
     /**
      * Get random position on the grid.
      *
@@ -30,7 +36,7 @@ public class Position {
         return new Position(x, y, gridSize);
     }
 
-    // todo  public static Position getRandomPositionAtDistance(int distance) {}
+    // todo  public static Position getRandomPositionAtDistance(int distance, Position from) {}
 
     /**
      * Distance (Manhattan) of this position from the given position.
@@ -52,7 +58,7 @@ public class Position {
         }
     }
 
-    public boolean isOnGrid() {
+    private boolean isOnGrid() {
         int absX = Math.abs(x);
         int absY = Math.abs(y);
         return (absX <= gridSize && absY <= gridSize);
