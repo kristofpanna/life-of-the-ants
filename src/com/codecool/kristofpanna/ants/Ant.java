@@ -1,13 +1,20 @@
 package com.codecool.kristofpanna.ants;
 
-import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Position;
 
+import java.util.function.Supplier;
+
 public abstract class Ant {
+
     /**
-     * The (only) colony that the ant is part of.
+     * Size of the grid the ant lives on.
      */
-    protected Colony colony;
+    protected int gridSize;
+
+    /**
+     * To get the queen's current position.
+     */
+    protected Supplier<Position> queenPositionGetter;
 
     /**
      * Current position of the ant on the grid.
@@ -15,8 +22,9 @@ public abstract class Ant {
     protected Position position;
 
 
-    public Ant(Colony colony) {  // todo refactor param: only interfaces / func interfaces
-        this.colony = colony;
+    public Ant(int gridSize, Supplier<Position> queenPositionGetter) {
+        this.gridSize = gridSize;
+        this.queenPositionGetter = queenPositionGetter;
         initPosition();
         System.out.println(this.getClass().toString() + " was born.");
     }
@@ -26,7 +34,7 @@ public abstract class Ant {
      */
     protected void initPosition() {
         // default: random place
-        this.position = Position.getRandomPosition(colony.getGridSize());
+        this.position = Position.getRandomPosition(gridSize);
     }
 
     /**
@@ -45,7 +53,7 @@ public abstract class Ant {
      * Returns the ant's distance from the queen.
      */
     protected int queenDist() {
-        Position queenPosition = colony.getQueen().getPosition();
+        Position queenPosition = queenPositionGetter.get();
         return this.position.distanceFrom(queenPosition);
     }
 

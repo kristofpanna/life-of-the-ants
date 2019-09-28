@@ -6,6 +6,8 @@ import com.codecool.kristofpanna.util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * A colony of ants on the grid.
@@ -15,7 +17,9 @@ public class Colony {
      * Max absolute value of coordinates on the grid the ant lives on.
      */
     private int gridSize;
-    private Queen queen;
+    private Supplier<Position> queenPositionGetter;
+    private Consumer<MatingPartner> bootyCall;
+
     private List<Ant> ants = new ArrayList<>();
 
     private Colony(int gridSize) {
@@ -41,35 +45,30 @@ public class Colony {
     }
 
     private void createQueen() {
-        queen = new Queen(this);
+        Queen queen = new Queen(gridSize);
         ants.add(queen);
+        queenPositionGetter = queen::getPosition;
+        bootyCall = queen::tryToMate;
     }
 
     private void createSoldiers(int num) {
         for (int i = 0; i < num; i++) {
-            ants.add(new Soldier(this));
+            ants.add(new Soldier(gridSize, queenPositionGetter));
         }
     }
 
     private void createWorkers(int num) {
         for (int i = 0; i < num; i++) {
-            ants.add(new Worker(this));
+            ants.add(new Worker(gridSize, queenPositionGetter));
         }
     }
 
     private void createDrones(int num) {
         for (int i = 0; i < num; i++) {
-            ants.add(new Drone(this, queen::tryToMate));
+            ants.add(new Drone(gridSize, queenPositionGetter, bootyCall));
         }
     }
 
-    public int getGridSize() {
-        return gridSize;
-    }
-
-    public Queen getQueen() {
-        return queen;
-    }
 
     @Override
     public String toString() {

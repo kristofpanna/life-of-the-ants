@@ -1,10 +1,10 @@
 package com.codecool.kristofpanna.ants;
 
-import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Direction;
 import com.codecool.kristofpanna.util.Position;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class Drone extends Ant implements MatingPartner {
     private final int KICKING_DISTANCE = 10;
@@ -15,8 +15,8 @@ public class Drone extends Ant implements MatingPartner {
     private Consumer<MatingPartner> matingAttempt;
 
 
-    public Drone(Colony colony, Consumer<MatingPartner> matingAttempt) {
-        super(colony);
+    public Drone(int gridSize, Supplier<Position> queenPositionGetter, Consumer<MatingPartner> matingAttempt) {
+        super(gridSize, queenPositionGetter);
         this.matingAttempt = matingAttempt;
     }
 
@@ -32,8 +32,7 @@ public class Drone extends Ant implements MatingPartner {
         // If they do not have luck, they say “D’OH”, and are kicked 100 steps away instantly.
 
         if (queenDist() > 3) {
-            Position queenPosition = colony.getQueen().getPosition(); // todo get only position
-            position.moveTowards(queenPosition);
+            position.moveTowards(queenPositionGetter.get());
         } else {
             matingAttempt.accept(this);
         }

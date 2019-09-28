@@ -1,6 +1,5 @@
 package com.codecool.kristofpanna.ants;
 
-import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Position;
 
 import java.util.Optional;
@@ -22,8 +21,9 @@ public class Queen extends Ant {
      */
     private int matingTimer = 0;
 
-    public Queen(Colony colony) {
-        super(colony);
+    public Queen(int gridSize) {
+        super(gridSize, null);
+        queenPositionGetter = this::getPosition;
     }
 
     private boolean isInTheMoodForMating() {
@@ -67,7 +67,7 @@ public class Queen extends Ant {
 
     @Override
     protected void initPosition() {
-        this.position = new Position(0, 0, colony.getGridSize());
+        this.position = new Position(0, 0, gridSize);
     }
 
     @Override

@@ -1,12 +1,14 @@
 package com.codecool.kristofpanna.ants;
 
-import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Direction;
+import com.codecool.kristofpanna.util.Position;
+
+import java.util.function.Supplier;
 
 
 public class Worker extends Ant {
-    public Worker(Colony colony) {
-        super(colony);
+    public Worker(int gridSize, Supplier<Position> queenPositionGetter) {
+        super(gridSize, queenPositionGetter);
     }
 
     @Override

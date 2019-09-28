@@ -1,11 +1,13 @@
 package com.codecool.kristofpanna.ants;
 
-import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Direction;
+import com.codecool.kristofpanna.util.Position;
+
+import java.util.function.Supplier;
 
 public class Soldier extends Ant {
-    public Soldier(Colony colony) {
-        super(colony);
+    public Soldier(int gridSize, Supplier<Position> queenPositionGetter) {
+        super(gridSize, queenPositionGetter);
     }
 
     private Direction heading = Direction.NORTH;
