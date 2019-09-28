@@ -2,7 +2,9 @@ package com.codecool.kristofpanna;
 
 public class Main {
 
-    // run from terminal: java com.codecool.kristofpanna.Main -cp ./*
+    // run from terminal:
+    //      cd /home/panna/Dropbox/CodeCool/Java/OOP/life-of-the-ants/out/production/life-of-the-ants
+    //      java com.codecool.kristofpanna.Main -cp ./*
     public static void main(String[] args) {
         Colony colony = initColony();
         showColony(colony);
