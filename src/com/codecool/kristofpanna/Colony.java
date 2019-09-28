@@ -24,14 +24,14 @@ public class Colony {
 
     public Colony(int gridSize, int workerNum, int soldierNum, int droneNum) {
         this(gridSize);
-        // todo init -> ?
+        // todo init here -> how?
     }
 
     public void init(int workerNum, int soldierNum, int droneNum) { // todo: init in constructor -> make this private
+        createQueen();
         createWorkers(workerNum);
         createSoldiers(soldierNum);
         createDrones(droneNum);
-        createQueen();
     }
 
     public void moveAnts() {
@@ -59,7 +59,7 @@ public class Colony {
 
     private void createDrones(int num) {
         for (int i = 0; i < num; i++) {
-            ants.add(new Drone(this));
+            ants.add(new Drone(this, queen::tryToMate));
         }
     }
 

@@ -4,11 +4,20 @@ import com.codecool.kristofpanna.Colony;
 import com.codecool.kristofpanna.util.Direction;
 import com.codecool.kristofpanna.util.Position;
 
+import java.util.function.Consumer;
+
 public class Drone extends Ant implements MatingPartner {
     private final int KICKING_DISTANCE = 10;
 
-    public Drone(Colony colony) {
+    /**
+     * Contact to the queen to try to mate
+     */
+    private Consumer<MatingPartner> matingAttempt;
+
+
+    public Drone(Colony colony, Consumer<MatingPartner> matingAttempt) {
         super(colony);
+        this.matingAttempt = matingAttempt;
     }
 
     /**
@@ -26,7 +35,7 @@ public class Drone extends Ant implements MatingPartner {
             Position queenPosition = colony.getQueen().getPosition(); // todo get only position
             position.moveTowards(queenPosition);
         } else {
-            colony.getQueen().tryToMate(this); // todo only through functional interface
+            matingAttempt.accept(this);
         }
 
     }

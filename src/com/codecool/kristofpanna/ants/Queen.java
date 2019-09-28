@@ -35,7 +35,7 @@ public class Queen extends Ant {
      *
      * @param potentialMatingPartner the caller Drone himself (as a MatingPartner)
      */
-    public void tryToMate(MatingPartner potentialMatingPartner) { // todo private
+    public void tryToMate(MatingPartner potentialMatingPartner) { // public because Colony gives the Drone permission
         if (!isInTheMoodForMating()) {
             potentialMatingPartner.kickOff();
             return;
